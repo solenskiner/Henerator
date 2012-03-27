@@ -26,15 +26,23 @@ find[0] = /\b(han|hon)\b/g;
 replacement[0] = 'hen';
 find[1] = /\b(Han|Hon)\b/g;
 replacement[1] = 'Hen';
+
 find[2] = /\b(honom)\b/g;
-replacement[1] = 'hen';
+replacement[2] = 'hen';
 find[3] = /\b(henne)\b/g;
-replacement[1] = 'hen';
-find[2] = /\b(Honom)\b/g;
-replacement[1] = 'Hen';
-find[3] = /\b(Henne)\b/g;
-replacement[1] = 'Hen';
-// hur böjer man hen i genetiv? hennes alltihop?
+replacement[3] = 'hen';
+
+find[4] = /\b(Honom)\b/g;
+replacement[4] = 'Hen';
+find[5] = /\b(Honom)\b/g;
+replacement[5] = 'Hen';
+
+find[6] = /\b(hans)\b/g;
+replacement[6] = 'hens';
+find[7] = /\b(hennes)\b/g;
+replacement[7] = 'hens';
+find[8] = /\b(Hennes)\b/g;
+replacement[8] = 'Hens';
 
 if (document.readystate == "complete") {
     replaceInElement(document.body, find, replacement);
