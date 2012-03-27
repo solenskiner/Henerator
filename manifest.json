@@ -1,0 +1,12 @@
+{
+  "name": "Henerator",
+  "version": "1.0",
+  "description": "Med Henerator kan du surfa genusneutralt. Henerator byter ut alla \"han\" och \"hon\" mot \"hen\" på alla websidor du besöker.",
+  "icons": { "64" : "64.png" },
+  "content_scripts": [ {
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["Henerator.user.js"]
+  } ],
+  "homepage_url": "http://www.Henerator.se"
+}
+

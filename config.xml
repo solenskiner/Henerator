@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets">
+    <name>Henerator</name>
+    <description>Med Henerator kan du surfa genusneutralt. Henerator byter ut alla "han" och "hon" mot "hen" på alla websidor du besöker.</description>
+    <author href="mailto:solenskiner@gmail.com">Henrik Asp</author>
+    <icon src="64.png"/>
+</widget>
