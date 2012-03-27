@@ -22,50 +22,40 @@ function replaceInElement(element, find, replacement) {
 
 var find= []
 var replacement= []
+
 find[0] = /\b(han|hon)\b/g;
 replacement[0] = 'hen';
+
 find[1] = /\b(Han|Hon)\b/g;
 replacement[1] = 'Hen';
 
-find[2] = /\b(honom)\b/g;
+find[2] = /\b(honom|henne)\b/g;
 replacement[2] = 'hen';
-find[3] = /\b(henne)\b/g;
-replacement[3] = 'hen';
 
-find[4] = /\b(Honom)\b/g;
-replacement[4] = 'Hen';
-find[5] = /\b(Honom)\b/g;
-replacement[5] = 'Hen';
+find[3] = /\b(Honom|Henne)\b/g;
+replacement[3] = 'Hen';
 
-find[6] = /\b(hans)\b/g;
-replacement[6] = 'hens';
-find[7] = /\b(hennes)\b/g;
-replacement[7] = 'hens';
-find[8] = /\b(Hennes)\b/g;
-replacement[8] = 'Hens';
+find[4] = /\b(hans|hennes)\b/g;
+replacement[4] = 'hens';
+
+find[5] = /\b(Hennes)\b/g;
+replacement[5] = 'Hens';
+
+window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
+window.addEventListener("change", myHandleEvent, false);
+
+function myHandleEvent(e) {
+    window.removeEventListener("DOMSubtreeModified", myHandleEvent, false);
+    window.removeEventListener("change", myHandleEvent, false);
+    replaceInElement(document.body, find, replacement);
+    window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
+    window.addEventListener("change", myHandleEvent, false);
+}
 
 if (document.readystate == "complete") {
     replaceInElement(document.body, find, replacement);
 } else {
-    window.addEventListener(
-                              "DOMContentLoaded",
-                              function(e) { replaceInElement(document.body, find, replacement); },
-                              false
-                             );
-    window.addEventListener(
-                              "load",
-                              function(e) { replaceInElement(document.body, find, replacement); },
-                              false
-                             );
+    window.addEventListener("load", myHandleEvent, false);
+    window.addEventListener("DOMContentLoaded", myHandleEvent, false);
 }
-window.addEventListener(
-                          "DOMSubtreeModified",
-                          function(e) { replaceInElement(document.body, find, replacement); },
-                          false
-                         );
-window.addEventListener(
-                          "change",
-                          function(e) { replaceInElement(document.body, find, replacement); },
-                          false
-                         );
 
