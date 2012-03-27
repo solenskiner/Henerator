@@ -23,23 +23,18 @@ function replaceInElement(element, find, replacement) {
 var find= []
 var replacement= []
 
-find[0] = /\b(han|hon)\b/g;
+
+find[0] = /\b(han|hon|hon\/han|honom|henne)\b/g;
 replacement[0] = 'hen';
 
-find[1] = /\b(Han|Hon)\b/g;
-replacement[1] = 'Hen';
+find[1] = /\b(Han|Hon|Honom|Henne)\b/g;
+replacement[1] = 'Hen';;
 
-find[2] = /\b(honom|henne)\b/g;
-replacement[2] = 'hen';
+find[2] = /\b(hans|hennes)\b/g;
+replacement[2] = 'hens';
 
-find[3] = /\b(Honom|Henne)\b/g;
-replacement[3] = 'Hen';
-
-find[4] = /\b(hans|hennes)\b/g;
-replacement[4] = 'hens';
-
-find[5] = /\b(Hennes)\b/g;
-replacement[5] = 'Hens';
+find[3] = /\b(Hennes)\b/g;
+replacement[3] = 'Hens';
 
 window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
 window.addEventListener("change", myHandleEvent, false);
@@ -47,6 +42,9 @@ window.addEventListener("change", myHandleEvent, false);
 function myHandleEvent(e) {
     window.removeEventListener("DOMSubtreeModified", myHandleEvent, false);
     window.removeEventListener("change", myHandleEvent, false);
+    // lägg en timer som callar replaceInElement om ~0.1s, 
+    // resetta timern varje gång myHandleEvent callas.
+    // Så att replaceInElement inte callas föränss sidan är färdigladdad.
     replaceInElement(document.body, find, replacement);
     window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
     window.addEventListener("change", myHandleEvent, false);
