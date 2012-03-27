@@ -5,6 +5,14 @@
 // @include       *
 // ==/UserScript==
 
+function henate(string, replacement) {
+    if (string.charAt(0) == string.charAt(0).toUpperCase()) {
+        return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+    } else {
+        return replacement;
+    }
+};
+
 function replaceInElement(element, find, replacement) {
     for (var i= element.childNodes.length; i-->0;) {
         var child= element.childNodes[i];
@@ -14,7 +22,7 @@ function replaceInElement(element, find, replacement) {
                 replaceInElement(child, find, replacement);
         } else if (child.nodeType==3) {
             for (var j= find.length; j-->0;) {
-                child.data = child.data.replace(find[j], replacement[j]);
+                child.data = child.data.replace(find[j], function (string) { return henate(string, replacement[j]) });
             }
         }
     }
@@ -23,18 +31,14 @@ function replaceInElement(element, find, replacement) {
 var find= []
 var replacement= []
 
-
-find[0] = /\b(han|hon|hon\/han|honom|henne)\b/g;
+find[0] = /\b(han|hon|hon\/han|honom|henne)\b/gi;
 replacement[0] = 'hen';
 
-find[1] = /\b(Han|Hon|Honom|Henne)\b/g;
-replacement[1] = 'Hen';;
+find[1] = /\b(hennes)\b/gi;
+replacement[1] = 'hens';
 
-find[2] = /\b(hans|hennes)\b/g;
+find[2] = /\b(hans)\b/g;
 replacement[2] = 'hens';
-
-find[3] = /\b(Hennes)\b/g;
-replacement[3] = 'Hens';
 
 window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
 window.addEventListener("change", myHandleEvent, false);
