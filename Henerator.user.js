@@ -28,12 +28,12 @@ find[0] = /\b(han|hon|hon\/han|honom|henne)\b/g;
 replacement[0] = 'hen';
 
 find[1] = /\b(Han|Hon|Honom|Henne)\b/g;
-replacement[1] = 'Hen';;
+replacement[1] = 'Hen';
 
 find[2] = /\b(hans|hennes)\b/g;
 replacement[2] = 'hens';
 
-find[3] = /\b(Hennes)\b/g;
+find[3] = /\b(Hans|Hennes)\b/g;
 replacement[3] = 'Hens';
 
 window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
