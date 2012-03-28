@@ -1,8 +1,10 @@
 {
   "name": "Henerator",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Med Henerator kan du surfa genusneutralt. Henerator byter ut alla \"han\" och \"hon\" mot \"hen\" på alla websidor du besöker.",
-  "icons": { "64" : "icon.png" },
+  "icons": { "128": "icon.png",
+              "48": "icon.png",
+              "16": "icon.png" },
   "content_scripts": [ {
     "matches": ["http://*/*", "https://*/*"],
     "js": ["Henerator.user.js"]
