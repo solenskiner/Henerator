@@ -11,7 +11,7 @@ function henate(string, replacement) {
     } else {
         return replacement;
     }
-};
+}
 
 function replaceInElement(element, find, replacement) {
     for (var i= element.childNodes.length; i-->0;) {
@@ -40,24 +40,27 @@ replacement[1] = 'hens';
 find[2] = /\b(hans)\b/g;
 replacement[2] = 'hens';
 
-window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
-window.addEventListener("change", myHandleEvent, false);
+var timer= setTimeout("", 0);
 
-function myHandleEvent(e) {
-    window.removeEventListener("DOMSubtreeModified", myHandleEvent, false);
-    window.removeEventListener("change", myHandleEvent, false);
-    // lägg en timer som callar replaceInElement om ~0.1s, 
-    // resetta timern varje gång myHandleEvent callas.
-    // Så att replaceInElement inte callas föränss sidan är färdigladdad.
-    replaceInElement(document.body, find, replacement);
-    window.addEventListener("DOMSubtreeModified", myHandleEvent, false);
-    window.addEventListener("change", myHandleEvent, false);
+function delayedHandleChange(e) {
+    clearTimeout(timer);
+    timer= setTimeout(handleChange, 50);
 }
 
-if (document.readystate == "complete") {
+function handleChange() {
+    window.removeEventListener("DOMSubtreeModified", delayedHandleChange, false);
+    window.removeEventListener("change", delayedHandleChange, false);
     replaceInElement(document.body, find, replacement);
+    window.addEventListener("DOMSubtreeModified", delayedHandleChange, false);
+    window.addEventListener("change", delayedHandleChange, false);
+}
+
+window.addEventListener("DOMSubtreeModified", delayedHandleChange, false);
+window.addEventListener("change", delayedHandleChange, false);
+if (document.readystate == "complete") {
+    handleChange();
 } else {
-    window.addEventListener("load", myHandleEvent, false);
-    window.addEventListener("DOMContentLoaded", myHandleEvent, false);
+    window.addEventListener("load", delayedHandleChange, false);
+    window.addEventListener("DOMContentLoaded", delayedHandleChange, false);
 }
 
