@@ -3,5 +3,5 @@
     <name>Henerator</name>
     <description>Med Henerator kan du surfa genusneutralt. Henerator byter ut alla "han" och "hon" mot "hen" på alla websidor du besöker.</description>
     <author href="mailto:solenskiner@gmail.com">Henrik Asp</author>
-    <icon src="64.png"/>
+    <icon src="icon.png"/>
 </widget>
